@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  * {
+    margin: 1rem;
+  }
+
+  fa-icon {
+    cursor: pointer;
+    font-size: 64px;
+  }
+
+  #prev {
+    &:hover {
+      @keyframes left {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(-10px);
+        }
+      }
+      animation: left 1s ease-in-out infinite;
+    }
+  }
+
+  #next {
+    &:hover {
+      @keyframes right {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(10px);
+        }
+      }
+      animation: right 1s ease-in-out infinite;
+    }
+  }
+
+  .poo {
+    .poo-pillow {
+      position: relative;
+
+      top: 0;
+      left: 0;
+      height: 1rem;
+      border-radius: 10px;
+      background-color: #dd1c1a;
+    }
+  }
+}

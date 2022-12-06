@@ -1,18 +1,25 @@
+const shape = (shapeColor, bgColor) => `
+:doodle {
+  @shape: drop;
+  background-color: ${shapeColor};
+}
+
+:doodle > * {
+  @shape: drop;
+
+  background-color: ${bgColor};
+
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}`;
+
 export const sketches = [
   ({ primary, bgColor, shapeColor, stroke, angle, length }) => `    
   @grid: 1 / 40vmin;
 
-  :doodle {
-    @shape: drop;
-    background-color: ${shapeColor};
-  }
-
-  :doodle > * {
-    @shape: drop;
-
-    background-color: ${bgColor};
-    transform: scale(0.9);
-  }
+  ${shape(shapeColor, bgColor)}
 
   background-repeat: no-repeat;
   background: @svg(
@@ -43,21 +50,7 @@ export const sketches = [
   ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
   @grid: 7 / 40vmin;
 
-  :doodle {
-    @shape: drop;
-    background-color: ${shapeColor};
-  }
-
-  :doodle > * {
-    @shape: drop;
-
-    background-color: ${bgColor};
-
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
-  }
+  ${shape(shapeColor, bgColor)}
 
   @even {
     @shape: hypocycloid 4;
@@ -71,11 +64,13 @@ export const sketches = [
     to { transform: scale(${1 + stroke}) rotate(90deg); }  
   }
   `,
-  () => `
+  ({ shapeColor, bgColor }) => `
   :doodle {
-    @grid: 18 / 100vmax;
-    background: #0a0c27;
+    @grid: 18 / 40vmin;
   }
+
+  ${shape(shapeColor, bgColor)}
+
   --hue: calc(180 + 1.5 * @row * @col);
   background: hsl(var(--hue), 50%, 70%);
   margin: -.5px;
@@ -87,10 +82,13 @@ export const sketches = [
     '100% 0, 100% 100%, 0 100%'
   ));
   `,
-  () => `
+  ({ shapeColor, bgColor }) => `
   :doodle {
-    @grid: 10 / 100%;
+    @grid: 10 / 40vmin;
   }
+
+  ${shape(shapeColor, bgColor)}
+
   background: @pick(
     #ff0198, #8156a8, #ff6d00, #ff75e4
   );

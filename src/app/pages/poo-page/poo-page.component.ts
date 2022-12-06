@@ -1,16 +1,16 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { random } from '../../core/utilities';
 import { sketches } from './sketches';
 
 @Component({
   selector: 'app-poo-page',
   templateUrl: './poo-page.component.html',
-  styleUrls: ['./poo-page.component.css'],
+  styleUrls: ['./poo-page.component.scss'],
 })
-export class PooPageComponent implements AfterViewInit {
+export class PooPageComponent implements OnInit {
   currentSketch: string;
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.updateSketch();
   }
 

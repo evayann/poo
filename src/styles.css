@@ -1,1 +1,5 @@
-/* Add application styles & imports to this file! */
+/* Little CSS reset */
+* {
+  margin: 0;
+  padding: 0;
+}

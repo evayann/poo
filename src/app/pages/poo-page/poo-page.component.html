@@ -1,18 +1,20 @@
 <div id="screen">
-  <button
+  <fa-icon
     id="prev"
     aria-label="previous doodle effect"
     (click)="updateSketch()"
-  ></button>
+    [icon]="'arrow-left'"
+  ></fa-icon>
   <div id="icon1" class="poo">
     <div class="icons">
       <app-poo [sketch]="currentSketch"></app-poo>
     </div>
     <div class="poo-pillow"></div>
   </div>
-  <button
+  <fa-icon
     id="next"
     aria-label="next doodle effect"
     (click)="updateSketch()"
-  ></button>
+    [icon]="'arrow-right'"
+  ></fa-icon>
 </div>

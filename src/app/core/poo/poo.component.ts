@@ -1,5 +1,6 @@
 import 'css-doodle';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -16,12 +17,23 @@ import { CSSDoodleElement } from '../../interfaces/css-doodle.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PooComponent {
+export class PooComponent implements AfterViewInit {
   @ViewChild('doodle') doodle!: ElementRef<CSSDoodleElement>;
   @Input()
   set sketch(sketch: string) {
     console.log('New sketch is : ');
     console.log(sketch);
-    this.doodle.nativeElement.update(sketch);
+    this._sketch = sketch;
+    this.updateSketck();
+  }
+
+  private _sketch: string;
+
+  ngAfterViewInit() {
+    this.updateSketck();
+  }
+
+  private updateSketck() {
+    this.doodle?.nativeElement.update(this._sketch);
   }
 }
