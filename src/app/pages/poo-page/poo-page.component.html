@@ -1,0 +1,18 @@
+<div id="screen">
+  <button
+    id="prev"
+    aria-label="previous doodle effect"
+    (click)="updateSketch()"
+  ></button>
+  <div id="icon1" class="poo">
+    <div class="icons">
+      <app-poo [sketch]="currentSketch"></app-poo>
+    </div>
+    <div class="poo-pillow"></div>
+  </div>
+  <button
+    id="next"
+    aria-label="next doodle effect"
+    (click)="updateSketch()"
+  ></button>
+</div>
