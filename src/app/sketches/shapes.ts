@@ -4,7 +4,7 @@ const cssDoodleShape = (shapes) =>
       typeof shape === 'string'
         ? shape
         : `@shape(${JSON.stringify(shape)
-            .replaceAll(',', ';')
+            .replace(/,/g, ';')
             .replace(/{|}|"|'/g, '')})`
     )
     .join(', ');
@@ -30,11 +30,18 @@ export const stick = {
   y: '1.5*sin(t)/cos(t)*cos(4t)%1',
 };
 
+export const flash = {
+  points: 20,
+  scale: 1.2,
+  r: 'cos(222t)^224-.2',
+};
+
 export const shapes = cssDoodleShape([
-  // ...mathShapes,
-  // ...animalShapes,
-  // ...miscShapes,
+  ...mathShapes,
+  ...animalShapes,
+  ...miscShapes,
   stick,
+  flash,
 ]);
 
 console.log(shapes);

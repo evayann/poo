@@ -140,15 +140,30 @@ export const sketches = [
     
     ${shape(shapeColor, bgColor)}
 
-    animation: random 2s @r(.6s) infinite;
+    animation: random 10s @r(.6s) infinite;
     
     background: @p(${primary}, ${secondary}, ${tertiary});
 
     @shape: @p(${shapes});
 
     @keyframes random {
-      0%, 100% { transform: scale(1) rotate(0deg); @shape: @p(${shapes}); }
-      10%, 60% { transform: scale(@r(0.6, 0.9)) rotate(@r(-15, 15)deg) translate(@r(-20, 20)%, @r(-20, 20)%); @shape: @p(${shapes}); }
+      0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        clip-path: @p(${shapes});
+      }
+      3% { 
+        transform: scale(@p(0.6, 0.75, 0.9)) rotate(@r(-15, 15)deg) translate(@r(-20, 20)%, @r(-20, 20)%); 
+      }
+      5% { 
+        transform: rotate(@r(-15, 15)deg) translate(calc(@lr + @r(-20, 20)%), calc(@lr + @r(-20, 20)%)); 
+      }
+      7% { 
+        transform: rotate(@r(-15, 15)deg) translate(@r(-20, 20)%, @r(-20, 20)%); 
+      }
+      10% { 
+        transform: scale(@r(0.6, 0.9));
+        clip-path: @p(${shapes});
+      }
     }
   `,
   ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
@@ -164,15 +179,61 @@ export const sketches = [
       10%, 60% { transform: scale(@r(0.6, 0.9)) rotate(@r(-15, 15)deg); }
     }
 
-    ::after {
-      content: '';
-      @size: 100%;
-      ${random(patterns)(primary, random([secondary, tertiary]))}
-      // clip-path: @shape(
-      //   points: @p(3, 4, 5);
-      //   scale: @rand(0.8, 1.5);
-      //   move: @r(-1, 1), @r(-1, 1);
-      // );
+    ${random(patterns)(primary, random([secondary, tertiary]))}
+  `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+  @grid: 6x1 / 100%;
+
+  ${shape(shapeColor, bgColor)}
+
+  @place: @plot(r: .45; dir: auto -125);
+  @size: 50%;
+
+  border-radius: 50%;
+  box-shadow: 45px 0 0 -10px ${random([primary, secondary, tertiary])};
+  filter: hue-rotate(calc(90deg / @I * @i));
+
+  animation: colors 5s ease-in-out infinite;
+
+  @keyframes colors {
+    0%, 100% { filter: hue-rotate(calc(90deg / @I * @i)); }
+    50% { filter: hue-rotate(calc(270deg / @I * @i)); }
+  }
+  `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    @grid: 16x1 / 100%;
+
+    ${shape(shapeColor, bgColor)}
+
+    @shape: bud 7;
+    @place-cell: center;
+    @size: calc(100% - @i * (100% / @I));
+
+    background: radial-gradient(
+      hsla(0, 0%, 100%, @rand(0.5, 1)),
+      hsla(calc(@rand(90) * @i), 70%, 65%)
+    );
+
+    // transform: rotate(calc(@rand(60deg) * @i)); 
+    // z-index: calc(@I - @i);
+
+    @odd {
+      mix-blend-mode: screen;
+      // animation: @r(3, 6)s rotate linear infinite;
+      // @keyframes rotate {
+      //   from { transform: rotate(0deg); }
+      //   to { transform: rotate(360deg); }
+      // }
+    }
+
+    @even {
+      mix-blend-mode: multiply;
+      animation: @r(1, 3)s rotate linear infinite; 
+    }
+
+    @keyframes rotate {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
     }
   `,
 ];
