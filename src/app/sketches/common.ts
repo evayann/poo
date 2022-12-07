@@ -1,6 +1,6 @@
 import { random } from '../core/utilities';
 import { patterns } from './patterns';
-import { shapes } from './shapes';
+import { miscShapes, shapes } from './shapes';
 
 const shape = (shapeColor, bgColor) => `
 :doodle {
@@ -182,23 +182,23 @@ export const sketches = [
     ${random(patterns)(primary, random([secondary, tertiary]))}
   `,
   ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
-  @grid: 6x1 / 100%;
+    @grid: 6x1 / 100%;
 
-  ${shape(shapeColor, bgColor)}
+    ${shape(shapeColor, bgColor)}
 
-  @place: @plot(r: .45; dir: auto -125);
-  @size: 50%;
+    @place: @plot(r: .45; dir: auto -125);
+    @size: 50%;
 
-  border-radius: 50%;
-  box-shadow: 45px 0 0 -10px ${random([primary, secondary, tertiary])};
-  filter: hue-rotate(calc(90deg / @I * @i));
+    border-radius: 50%;
+    box-shadow: 45px 0 0 -10px ${random([primary, secondary, tertiary])};
+    filter: hue-rotate(calc(90deg / @I * @i));
 
-  animation: colors 5s ease-in-out infinite;
+    animation: colors 5s ease-in-out infinite;
 
-  @keyframes colors {
-    0%, 100% { filter: hue-rotate(calc(90deg / @I * @i)); }
-    50% { filter: hue-rotate(calc(270deg / @I * @i)); }
-  }
+    @keyframes colors {
+      0%, 100% { filter: hue-rotate(calc(90deg / @I * @i)); }
+      50% { filter: hue-rotate(calc(270deg / @I * @i)); }
+    }
   `,
   ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 16x1 / 100%;
@@ -228,9 +228,47 @@ export const sketches = [
       from { rotate: 360deg; }
       to { rotate: 0deg; }
     }
+
     @keyframes rotate-right {
       from { rotate: 0deg; }
       to { rotate: 360deg; }
+    }
+  `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    @grid: 5 / 100%;
+
+    ${shape(shapeColor, bgColor)}
+
+    @shape: @p(${miscShapes});
+    background-color: @p(${primary}, ${secondary}, ${tertiary});
+
+    animation: filter @r(4, 10)s infinite;
+
+    @keyframes filter {
+      0%, 100% {
+        filter: @svg-filter(
+          feTurbulence {
+            type: fractalNoise;
+            baseFrequency: @r(.01, 0.02) .5;
+          }
+          feDisplacementMap {
+            in: SourceGraphic;
+            scale: @r(40, 60);
+          }
+        );
+      }
+      50% {
+        filter: @svg-filter(
+          feTurbulence {
+            type: fractalNoise;
+            baseFrequency: @r(.1, .2) @r(1, 2);
+          }
+          feDisplacementMap {
+            in: SourceGraphic;
+            scale: @r(80, 100);
+          }
+        );
+      }
     }
   `,
 ];
