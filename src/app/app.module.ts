@@ -10,10 +10,11 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from './app.component';
 import { PooComponent } from './core/poo/poo.component';
 import { PooPageComponent } from './pages/poo-page/poo-page.component';
+import { PoosPageComponent } from './pages/poos-page/poos-page.component';
 
 @NgModule({
   imports: [BrowserModule, FontAwesomeModule, PooComponent],
-  declarations: [AppComponent, PooPageComponent],
+  declarations: [AppComponent, PoosPageComponent, PooPageComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {

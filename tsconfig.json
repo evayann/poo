@@ -10,11 +10,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
+    "lib": ["ES2022", "ES2021.String", "dom"]
   },
   "angularCompilerOptions": {
     "enableIvy": true,

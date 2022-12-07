@@ -21,8 +21,8 @@ export class PooComponent implements AfterViewInit {
   @ViewChild('doodle') doodle!: ElementRef<CSSDoodleElement>;
   @Input()
   set sketch(sketch: string) {
-    console.log('New sketch is : ');
-    console.log(sketch);
+    //console.log('New sketch is : ');
+    //console.log(sketch);
     this._sketch = sketch;
     this.updateSketck();
   }
