@@ -101,8 +101,8 @@ export const sketches = [
     animation-name: explosion;
     animation-iteration-count: infinite;
     animation-direction: reverse;
-    animation-duration: calc(@rand(2s, 5s, .1));
-    animation-delay: calc(@rand(-5s, -1s, .1));
+    animation-duration: calc(@r(2s, 5s, .1));
+    animation-delay: calc(@r(-5s, -1s, .1));
     animation-timing-function:
       cubic-bezier(.84, .02, 1, 1);
     @keyframes explosion {
@@ -210,28 +210,25 @@ export const sketches = [
     @size: calc(100% - @i * (100% / @I));
 
     background: radial-gradient(
-      hsla(0, 0%, 100%, @rand(0.5, 1)),
-      hsla(calc(@rand(90) * @i), 70%, 65%)
+      @p(${primary}, ${secondary}, ${tertiary})@hex(@r(0, 255)),
+      hsla(calc(@r(90) * @i), 70%, 65%)
     );
-
-    // transform: rotate(calc(@rand(60deg) * @i)); 
-    // z-index: calc(@I - @i);
 
     @odd {
       mix-blend-mode: screen;
-      // animation: @r(3, 6)s rotate linear infinite;
-      // @keyframes rotate {
-      //   from { transform: rotate(0deg); }
-      //   to { transform: rotate(360deg); }
-      // }
+      animation: rotate-left @r(3s, 10s) linear infinite;
     }
 
     @even {
       mix-blend-mode: multiply;
-      animation: @r(1, 3)s rotate linear infinite; 
+      animation: rotate-right @r(3s, 10s) linear infinite; 
     }
 
-    @keyframes rotate {
+    @keyframes rotate-left {
+      from { rotate: 360deg; }
+      to { rotate: 0deg; }
+    }
+    @keyframes rotate-right {
       from { rotate: 0deg; }
       to { rotate: 360deg; }
     }
