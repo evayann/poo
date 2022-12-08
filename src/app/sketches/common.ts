@@ -323,8 +323,10 @@ export const sketches = [
   `,
   ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     :doodle {
-      @grid: 3x1 / 100%;
+      @grid: 5x1 / 100%;
     }
+
+    ${shape(shapeColor, bgColor)}
 
     position: absolute;
     top: @r(40, 60)%;
@@ -333,17 +335,30 @@ export const sketches = [
     @size: 0;
     padding-left: @r(15)%;
     box-shadow: 0 0 @r(10)vmin @r(1, 5)vmin @p(${primary}, ${secondary}, ${tertiary});
-    filter: @svg-filter (
+
+    filter: @svg-filter(
       feTurbulence {
         type: fractalNoise;
         baseFrequency: 0.01;
         numOctaves: 10;
       }
-
       feDisplacementMap {
         in: SourceGraphic;
         scale: 180;
       }
     );
+
+    animation: translate 10s infinite;
+
+    @keyframes translate {
+      from { 
+        top: @r(40, 60)%;
+        left: @r(30, 70)%;
+      }
+      to { 
+        top: @r(40, 60)%;
+        left: @r(30, 70)%;
+      }    
+    }
   `,
 ];
