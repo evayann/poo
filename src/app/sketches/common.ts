@@ -517,4 +517,64 @@ export const sketches = [
     }
   }
   `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    @grid: 10 / 100%;
+
+    ${shape(shapeColor, bgColor)}
+    
+    animation: bounce linear @r(7s, 15s) @r(-1s, -5s) infinite;
+    opacity: @r(0.3, 1);
+    @place-cell: @r(100%) @r(100%);
+
+    :after {
+      content: @p(🍭, 🍫, 🧁, 🍪);
+      position: absolute;
+      @place-cell: @r(100%) @r(100%);
+      font-size: @r(15px, 25px);
+      z-index: @p(1, 2);
+      transform: rotate(@r(360deg));
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(@r(-101vh, -110vh));
+      }
+      100% {
+        transform: translateY(@r(101vh, 110vh));
+      }
+    }
+  `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    @grid: 10x1 / 100%;
+
+    ${shape(shapeColor, bgColor)}
+
+    @place-cell: center;
+    @shape: hypocycloid 6;
+    @size: calc(100% / @I * @i);
+
+    @size: calc(90% / @I * @i);
+    background-color: #60569e;
+    background-color: hsla(
+      calc(20 * @i), 70%, 68%,
+      calc(3 / @i * .8)
+    );
+
+    z-index: calc(10 + (@I - @i));
+    transform: rotate(calc(@i * 30deg));
+    animation: loop 5s ease infinite;
+    animation-delay: calc(@i * 500ms);
+
+    @keyframes loop {
+      0 { transform: rotate(calc(@i * 30deg)); }
+      5% { transform: rotate(calc(@i * 30deg + 60deg)); }
+      10% { transform: rotate(calc(@i * 30deg + 60deg));}
+      15% { transform: rotate(calc(@i * 30deg)); }
+      20% { transform: rotate(calc(@i * 30deg)); }
+      25% { transform: rotate(calc(@i * 30deg + 60deg)); }
+      30% { transform: rotate(calc(@i * 30deg + 60deg));}
+      35% { transform: rotate(calc(@i * 30deg)); }
+      100% { transform: rotate(calc(@i * 30deg)); }
+    }
+  `,
 ];
