@@ -420,4 +420,54 @@ export const sketches = [
     }
   `;
   },
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    @grid: 30x1 / 100%;
+    --deg: @p(-180deg, 180deg);
+
+    ${shape(shapeColor, bgColor)}
+
+    :container {
+      perspective: 20vmin;
+    }
+
+    :after, :before {
+      content: '';
+      background: ${rdmColor(primary, secondary, tertiary)}; 
+      @place-cell: @r(100%) @r(100%);
+      @size: @r(5px, 20px);
+      @shape: heart;
+    }
+
+    @place-cell: center;
+    @size: 100%;
+
+    box-shadow: @m2(0 0 50px ${rdmColor(primary, secondary, tertiary)});
+    background: @m100(
+      radial-gradient(${rdmColor(
+        primary,
+        secondary,
+        tertiary
+      )} 50%, transparent 0) 
+      @r(-20%, 120%) @r(-20%, 100%) / 1px 1px
+      no-repeat
+    );
+
+    will-change: transform, opacity;
+    animation: scale-down 12s linear infinite;
+    animation-delay: calc(-12s / @I * @i);
+
+    @keyframes scale-down {
+      0%, 95.01%, 100% {
+        transform: translateZ(0) rotate(0);
+        opacity: 0;
+      }
+      10% { 
+        opacity: 1; 
+      }
+      95% {
+        transform: 
+          translateZ(-100vmin) rotateZ(@var(--deg));
+      }
+    }
+  `,
 ];
