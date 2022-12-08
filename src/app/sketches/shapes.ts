@@ -43,5 +43,3 @@ export const shapes = cssDoodleShape([
   stick,
   flash,
 ]);
-
-console.log(shapes);

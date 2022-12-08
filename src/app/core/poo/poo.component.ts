@@ -21,21 +21,26 @@ export class PooComponent implements AfterViewInit {
   @ViewChild('doodle') doodle!: ElementRef<CSSDoodleElement>;
   @Input()
   set sketch(sketch: string) {
-    //console.log('New sketch is : ');
-    //console.log(sketch);
+    if (this.debug) {
+      console.log('New sketch is : ');
+      console.log(sketch);
+    }
 
     this._sketch = sketch;
     this.updateSketck();
   }
 
   @Input()
-  set pause(isPause: boolean) {
-    this._isPause = isPause;
+  set pause(isPaused: boolean) {
+    this._isPaused = isPaused;
     this.updateAnimationState();
   }
 
+  @Input()
+  debug: boolean = false;
+
   private _sketch: string;
-  private _isPause: boolean = false;
+  private _isPaused: boolean = false;
 
   ngAfterViewInit() {
     this.updateSketck();
@@ -49,7 +54,7 @@ export class PooComponent implements AfterViewInit {
   private updateAnimationState() {
     this.doodle?.nativeElement.setAttribute(
       'style',
-      `--cssd-animation-play-state: ${this._isPause ? 'paused' : 'running'}`
+      `--cssd-animation-play-state: ${this._isPaused ? 'paused' : 'running'}`
     );
   }
 }

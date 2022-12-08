@@ -9,6 +9,7 @@ import { sketches } from '../../sketches/common';
 })
 export class PoosPageComponent implements OnInit {
   pooSketches: string[];
+  isPaused: boolean[];
 
   ngOnInit() {
     this.reload();
@@ -18,5 +19,6 @@ export class PoosPageComponent implements OnInit {
     this.pooSketches = sketches.map((sketchGenerator) =>
       sketchGenerator(getStyle())
     );
+    this.isPaused = sketches.map(() => true);
   }
 }

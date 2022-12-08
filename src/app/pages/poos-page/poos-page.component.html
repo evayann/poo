@@ -1,8 +1,25 @@
 <div (click)="reload()">
   <app-poo
     [sketch]="sketch"
-    [pause]="isPaused"
-    *ngFor="let sketch of pooSketches; let isPaused = false"
-    (mouseenter)="isPaused = false"
+    [pause]="isPaused[i]"
+    *ngFor="let sketch of pooSketches; let i = index"
+    (mouseenter)="isPaused[i] = false"
+    (mouseexit)="isPaused[i] = true"
   ></app-poo>
+
+  <!-- <div (click)="reload()">
+  <ng-container *ngFor="let sketch of pooSketches">
+    <ng-container
+      *ngTemplateOutlet="poo; context: { $implicit: sketch, isPaused: true }"
+    ></ng-container>
+  </ng-container>
+
+  <ng-template #poo let-sketch let-isPaused="isPaused">
+    <app-poo
+      [sketch]="sketch"
+      [pause]="isPaused"
+      (mouseenter)="isPaused = false"
+      (mouseexit)="isPaused = true"
+    ></app-poo>
+  </ng-template> -->
 </div>
