@@ -1,6 +1,6 @@
 import { random } from '../core/utilities';
 import { patterns } from './patterns';
-import { miscShapes, shapes } from './shapes';
+import { mathShapes, shapes } from './shapes';
 
 const shape = (shapeColor, bgColor) => `
 :doodle {
@@ -239,7 +239,10 @@ export const sketches = [
 
     ${shape(shapeColor, bgColor)}
 
-    @shape: @p(${miscShapes});
+    border-radius: @r(35%);
+    @random(.2) {
+      @shape: @p(${mathShapes});
+    }
     background-color: @p(${primary}, ${secondary}, ${tertiary});
 
     animation: filter @r(4, 10)s infinite;
@@ -270,5 +273,77 @@ export const sketches = [
         );
       }
     }
+  `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    :doodle {
+      @grid: 1 / 100%;
+    }
+
+    ${shape(shapeColor, bgColor)}
+
+    background-image: @svg(
+      viewBox: .5 .5 10 10;
+      stroke: #1B2D37;
+      stroke-width: .04;
+    
+      rect*10x10 {
+        fill: @p(${primary}, ${secondary}, ${tertiary});
+        x: calc(@nx - @r(.85, 1) / 2);
+        y: calc(@ny - @lr / 2);
+        width, height: @lr;
+        filter: url(#test);
+      }
+    
+      filter#test {
+        feTurbulence {
+          type: fractalNoise;
+          baseFrequency: 0.1 2;
+    
+          animate {
+            attributeName: baseFrequency;
+            values: 0;.1;0.5,2;0.1,2;
+            from: 0;
+            to: 100;
+            dur: 10s;
+            repeatCount: indefinite;
+          }
+        }
+        
+        feDisplacementMap {
+          in: SourceGraphic;
+          animate {
+            attributeName: scale;
+            values: 1;0.2;0.7;0;2;3;1;
+            dur: 10s;
+            repeatCount: indefinite;
+          }
+        }
+      }
+    );
+  `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    :doodle {
+      @grid: 3x1 / 100%;
+    }
+
+    position: absolute;
+    top: @r(40, 60)%;
+    left: @r(30, 70)%;
+
+    @size: 0;
+    padding-left: @r(15)%;
+    box-shadow: 0 0 @r(10)vmin @r(1, 5)vmin @p(${primary}, ${secondary}, ${tertiary});
+    filter: @svg-filter (
+      feTurbulence {
+        type: fractalNoise;
+        baseFrequency: 0.01;
+        numOctaves: 10;
+      }
+
+      feDisplacementMap {
+        in: SourceGraphic;
+        scale: 180;
+      }
+    );
   `,
 ];
