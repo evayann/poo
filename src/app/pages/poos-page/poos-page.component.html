@@ -1,3 +1,8 @@
 <div (click)="reload()">
-  <app-poo [sketch]="sketch" *ngFor="let sketch of pooSketches"></app-poo>
+  <app-poo
+    [sketch]="sketch"
+    [pause]="isPaused"
+    *ngFor="let sketch of pooSketches; let isPaused = false"
+    (mouseenter)="isPaused = false"
+  ></app-poo>
 </div>

@@ -5,11 +5,14 @@
     (click)="updateSketch()"
     [icon]="'arrow-left'"
   ></fa-icon>
-  <div id="icon1" class="poo">
-    <div class="icons">
-      <app-poo [sketch]="currentSketch"></app-poo>
+  <div class="poo">
+    <div class="poo-container">
+      <app-poo [sketch]="currentSketch" [pause]="isPaused"></app-poo>
     </div>
     <div class="poo-pillow"></div>
+    <button (click)="isPaused = !isPaused">
+      {{ isPaused ? 'Play' : 'Stop' }} animation
+    </button>
   </div>
   <fa-icon
     id="next"

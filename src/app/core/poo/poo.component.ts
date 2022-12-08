@@ -23,17 +23,33 @@ export class PooComponent implements AfterViewInit {
   set sketch(sketch: string) {
     //console.log('New sketch is : ');
     //console.log(sketch);
+
     this._sketch = sketch;
     this.updateSketck();
   }
 
+  @Input()
+  set pause(isPause: boolean) {
+    this._isPause = isPause;
+    this.updateAnimationState();
+  }
+
   private _sketch: string;
+  private _isPause: boolean = false;
 
   ngAfterViewInit() {
     this.updateSketck();
+    this.updateAnimationState();
   }
 
   private updateSketck() {
     this.doodle?.nativeElement.update(this._sketch);
+  }
+
+  private updateAnimationState() {
+    this.doodle?.nativeElement.setAttribute(
+      'style',
+      `--cssd-animation-play-state: ${this._isPause ? 'paused' : 'running'}`
+    );
   }
 }

@@ -9,6 +9,7 @@ import { sketches } from '../../sketches/common';
 })
 export class PooPageComponent implements OnInit {
   currentSketch: string;
+  isPaused: boolean = false;
 
   ngOnInit() {
     this.updateSketch();

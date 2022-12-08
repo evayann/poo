@@ -18,6 +18,7 @@
   fa-icon {
     cursor: pointer;
     font-size: 64px;
+    color: white;
   }
 
   #prev {
@@ -51,7 +52,15 @@
   }
 
   .poo {
-    .poo-pillow {
+    display: flex;
+    flex-direction: column;
+
+    &-container {
+      width: 40vmin;
+      height: 40vmin;
+    }
+
+    &-pillow {
       position: relative;
 
       top: 0;
