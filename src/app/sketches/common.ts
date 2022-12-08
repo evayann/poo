@@ -2,7 +2,7 @@ import { random } from '../core/utilities';
 import { patterns } from './patterns';
 import { mathShapes, shapes } from './shapes';
 
-const shape = (shapeColor, bgColor) => `
+const shape = (shapeColor: string, bgColor: string) => `
 :doodle {
   @shape: drop;
   background-color: ${shapeColor};
@@ -18,6 +18,8 @@ const shape = (shapeColor, bgColor) => `
   width: 90%;
   height: 90%;
 }`;
+
+const rdmColor = (...colors: string[]) => `@p(${colors.join(', ')})`;
 
 export const sketches = [
   ({ primary, bgColor, shapeColor, stroke, angle, length }) => `    
@@ -90,7 +92,7 @@ export const sketches = [
 
     ${shape(shapeColor, bgColor)}
 
-    background: @p(${primary}, ${shapeColor});
+    background: ${rdmColor(primary, shapeColor)};
     transform: translate(
       @rand(-50vw, 50vw),
       @rand(-50vh, 50vh)
@@ -142,7 +144,7 @@ export const sketches = [
 
     animation: random 10s @r(.6s) infinite;
     
-    background: @p(${primary}, ${secondary}, ${tertiary});
+    background: ${rdmColor(primary, secondary, tertiary)};
 
     @shape: @p(${shapes});
 
@@ -171,7 +173,7 @@ export const sketches = [
 
     ${shape(shapeColor, bgColor)}
 
-    background: @p(${primary}, ${secondary}, ${tertiary});
+    background: ${rdmColor(primary, secondary, tertiary)};
     animation: transform @r(1, 2)s ease @r(1, 2)s infinite;
 
     @keyframes transform {
@@ -210,7 +212,7 @@ export const sketches = [
     @size: calc(100% - @i * (100% / @I));
 
     background: radial-gradient(
-      @p(${primary}, ${secondary}, ${tertiary})@hex(@r(0, 255)),
+      ${rdmColor(primary, secondary, tertiary)}@hex(@r(0, 255)),
       hsla(calc(@r(90) * @i), 70%, 65%)
     );
 
@@ -243,7 +245,7 @@ export const sketches = [
     @random(.2) {
       @shape: @p(${mathShapes});
     }
-    background-color: @p(${primary}, ${secondary}, ${tertiary});
+    background-color: ${rdmColor(primary, secondary, tertiary)};
 
     animation: filter @r(4, 10)s infinite;
 
@@ -287,7 +289,7 @@ export const sketches = [
       stroke-width: .04;
     
       rect*10x10 {
-        fill: @p(${primary}, ${secondary}, ${tertiary});
+        fill: ${rdmColor(primary, secondary, tertiary)};
         x: calc(@nx - @r(.85, 1) / 2);
         y: calc(@ny - @lr / 2);
         width, height: @lr;
@@ -334,7 +336,11 @@ export const sketches = [
 
     @size: 0;
     padding-left: @r(15)%;
-    box-shadow: 0 0 @r(10)vmin @r(1, 5)vmin @p(${primary}, ${secondary}, ${tertiary});
+    box-shadow: 0 0 @r(10)vmin @r(1, 5)vmin ${rdmColor(
+      primary,
+      secondary,
+      tertiary
+    )};
 
     filter: @svg-filter(
       feTurbulence {
@@ -361,4 +367,57 @@ export const sketches = [
       }    
     }
   `,
+  ({ primary, secondary, tertiary, bgColor, shapeColor }) => {
+    const colors = [primary, secondary, tertiary, shapeColor];
+    const c1 = random(colors);
+    const c2 = random(colors.filter((c) => c !== c1));
+    return `
+    @grid: 50x1 / 100%;
+
+    ${shape(shapeColor, bgColor)}
+
+    @place-cell: center;
+    @size: 100%;
+    
+    ::before{
+      content: "";
+      @size: @r(10%);
+      border: 1px solid white;
+      background: @p(none, ${rdmColor(
+        primary,
+        secondary,
+        tertiary
+      )}, linear-gradient(to @p(bottom, left), @stripe(${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1})));
+      border-radius: @p(0, 50%);
+      position: absolute;
+      top: @r(100%);
+      left: @r(100%);
+      animation: floatingUpDown @r(1.5s, 5s) @r(1.5s) linear infinite alternate; 
+    }
+    
+    ::after {
+      content: "";
+      height: @r(1%);
+      width: @r(3%, 14%);
+      background: ${rdmColor(primary, secondary)};
+      position: absolute;
+      top: @r(100%);
+      left: @r(100%);
+      animation: floatingStickAnim @r(1.5s, 5s) @r(1.5s) linear infinite alternate; 
+      transform: translateX(300%);
+    }
+    
+    @keyframes floatingUpDown {
+      100% {
+        transform: translateY(-50%) rotateZ(@r(-5, 5)deg);
+      }
+    }
+    
+    @keyframes floatingStickAnim {
+      100% {
+        transform: translateX(-300%);
+      }
+    }
+  `;
+  },
 ];
