@@ -593,9 +593,7 @@ export const sketches = [
         #define TAU (2. * 3.141593)
         void main() {
           vec2 ur = u_resolution;
-          vec2 c = vec2(${0.5 + Math.random() * 0.125}, ${
-    0.5 + Math.random() * 0.125
-  });
+          vec2 c = vec2(${random(0.325, 0.625)}, ${random(0.325, 0.625)});
           vec2 p = gl_FragCoord.xy / ur.xy - c;
           float r = length(p);
           float len = length(p * vec2(ur.x / ur.y, 1.));
