@@ -3,6 +3,8 @@ export interface CSSDoodleElement extends HTMLElement {
   use: string;
   seed: string;
   update: (styles?: string) => void;
+  resume: () => void;
+  pause: () => void;
   export: (options?: {
     // Scale factor of the exported image. Default 1.
     scale?: number;

@@ -52,9 +52,7 @@ export class PooComponent implements AfterViewInit {
   }
 
   private updateAnimationState() {
-    this.doodle?.nativeElement.setAttribute(
-      'style',
-      `--cssd-animation-play-state: ${this._isPaused ? 'paused' : 'running'}`
-    );
+    if (this._isPaused) this.doodle?.nativeElement.pause();
+    else this.doodle?.nativeElement.resume();
   }
 }
