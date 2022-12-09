@@ -13,6 +13,9 @@ export function random(min?: number | any[], max?: number) {
   return m + rand * (max - m);
 }
 
+export const range = (min: number, max?: number) => max ? [...Array(max - min).keys()].map(x => min + x) : [...Array(min).keys()];
+export const gen = (nb: number, generator: (i: number, nb: number) => unknown) => range(nb).map(i => generator(i, nb));
+  
 export function getStyle() {
   return {
     primary: random(['#AF42AE', '#07A0C3']),
