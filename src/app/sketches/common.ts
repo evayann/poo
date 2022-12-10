@@ -1,5 +1,6 @@
-import { gen, random, range } from '../core/utilities';
-import { patterns } from './patterns';
+import { gen, range, remove } from '../shared/array';
+import { random, randomIn } from '../shared/random';
+import { Pattern, patterns } from './patterns';
 import { mathShapes, shapes } from './shapes';
 
 const shape = (shapeColor: string, bgColor: string) => `
@@ -181,7 +182,7 @@ export const sketches = [
       10%, 60% { transform: scale(@r(0.6, 0.9)) rotate(@r(-15, 15)deg); }
     }
 
-    ${random(patterns)(primary, random([secondary, tertiary]))}
+    ${randomIn(...patterns)(primary, randomIn(secondary, tertiary))}
   `,
   ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 6x1 / 100%;
@@ -192,7 +193,7 @@ export const sketches = [
     @size: 50%;
 
     border-radius: 50%;
-    box-shadow: 45px 0 0 -10px ${random([primary, secondary, tertiary])};
+    box-shadow: 45px 0 0 -10px ${randomIn(primary, secondary, tertiary)};
     filter: hue-rotate(calc(90deg / @I * @i));
 
     animation: colors 5s ease-in-out infinite;
@@ -369,8 +370,8 @@ export const sketches = [
   `,
   ({ primary, secondary, tertiary, bgColor, shapeColor }) => {
     const colors = [primary, secondary, tertiary, shapeColor];
-    const c1 = random(colors);
-    const c2 = random(colors.filter((c) => c !== c1));
+    const c1 = randomIn(colors);
+    const c2 = randomIn(remove(c1, colors));
     return `
     @grid: 50x1 / 100%;
 
@@ -629,7 +630,7 @@ export const sketches = [
       `
     };
 
-    const a = `
+    return `
       @grid: 1 / 100%; 
 
       ${shape(shapeColor, bgColor)}
@@ -659,8 +660,6 @@ export const sketches = [
         }
       );
     `
-    console.log(a)
-    return a;
   },
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { getStyle, random } from '../../core/utilities';
+import { randomIn } from '../../shared/random';
+import { getStyle } from '../../core/utilities';
 import { sketches } from '../../sketches/common';
 
 @Component({
@@ -17,7 +18,7 @@ export class PooPageComponent implements OnInit {
 
   updateSketch() {
     const style = getStyle();
-    const sketchGenerator = random(sketches);
+    const sketchGenerator = randomIn(...sketches);
     this.currentSketch = sketchGenerator(style);
   }
 }

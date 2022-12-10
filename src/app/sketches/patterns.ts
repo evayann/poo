@@ -20,4 +20,5 @@ function a(fg, bg) {
   `;
 }
 
-export const patterns = [rhombus, halfStripe];
+export type Pattern = (fg: string, bg: string) => string;
+export const patterns: Pattern[] = [rhombus, halfStripe];
