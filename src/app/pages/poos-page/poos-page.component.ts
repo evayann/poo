@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { polylineParameters, polylineSketch, Sketches } from '@sketches';
-import { DoodleSketch } from '@sketches';
-import { Sketch } from '@sketches';
+import { Sketches } from '@sketches';
+import { DoodleSketch, SketchesService } from '@sketches';
 
 @Component({
     selector: 'app-poos-page',
@@ -12,12 +11,14 @@ export class PoosPageComponent implements OnInit {
     pooSketches: Sketches;
     isPaused: boolean[];
 
+    constructor(private ss: SketchesService) {}
+
     ngOnInit() {
         this.reload();
     }
 
     reload() {
-        this.pooSketches = new Sketches([new DoodleSketch('polyline', polylineSketch, polylineParameters)]);
+        this.pooSketches = this.ss.sketches;
         this.isPaused = this.pooSketches.all.map(() => true);
     }
 }

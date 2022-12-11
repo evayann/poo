@@ -1,4 +1,9 @@
 import { IStyle } from './style.interface';
 
-export type SketchParameters = () => unknown;
-export type SketchGenerator = (style: IStyle, parameters: unknown) => string;
+export type SketchParametersGenerator = () => unknown;
+export type SketchContentGenerator = (style: IStyle, parameters?: unknown) => string;
+
+export interface SketchConfiguration {
+    contentGenerator: SketchContentGenerator;
+    parametersGenerator?: SketchParametersGenerator;
+}

@@ -4,9 +4,12 @@ import { IStyle, Sketch } from '@sketches';
 export class DoodleSketch extends Sketch {
     parse(seed: number): string {
         const style: IStyle = getStyle();
+        const parameters: unknown = this.sketchConfiguration.parametersGenerator
+            ? this.sketchConfiguration.parametersGenerator()
+            : {};
         return `
             ${this.sketchShape(style.shapeColor, style.bgColor)}
-            ${this.sketch(style, this.parameters())}
+            ${this.sketchConfiguration.contentGenerator(style, parameters)}
             `;
     }
 

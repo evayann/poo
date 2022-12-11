@@ -8,7 +8,7 @@ export class Sketches {
         return randomIn(...this.list);
     }
 
-    get(name: string): Sketch {
+    get(name: string): Sketch | null {
         return null;
     }
 

@@ -1,5 +1,5 @@
 import { random } from '@shared/random';
-import { IStyle, SketchGenerator, SketchParameters } from '@sketches';
+import { IStyle, SketchConfiguration } from '@sketches';
 
 export type PolylineParameters = {
     stroke: number;
@@ -7,15 +7,15 @@ export type PolylineParameters = {
     length: number;
 };
 
-export const polylineParameters: SketchParameters = () => {
+function parametersGenerator(): PolylineParameters {
     return {
         stroke: random(0.2, 2),
         length: random(50, 100),
         angle: random(10, 30),
     };
-};
+}
 
-export const polylineSketch: SketchGenerator = (style: IStyle, parameters: PolylineParameters) => {
+function contentGenerator(style: IStyle, parameters: PolylineParameters): string {
     const { primary } = style;
     const { stroke, length, angle } = parameters;
 
@@ -47,4 +47,9 @@ export const polylineSketch: SketchGenerator = (style: IStyle, parameters: Polyl
                 }
             }
         );`;
+}
+
+export const polyline: SketchConfiguration = {
+    contentGenerator,
+    parametersGenerator,
 };

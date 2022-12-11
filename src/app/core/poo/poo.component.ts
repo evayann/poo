@@ -15,6 +15,7 @@ import { Sketch } from '@sketches';
     standalone: true,
     selector: 'app-poo',
     templateUrl: './poo.component.html',
+    styleUrls: ['./poo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -29,6 +30,7 @@ export class PooComponent implements AfterViewInit {
             console.log(sketch.parse(0));
         }
 
+        this.name = sketch.name;
         this._sketch = sketch.parse(0);
         this.updateSketck();
     }
@@ -42,6 +44,7 @@ export class PooComponent implements AfterViewInit {
     @Input()
     debug: boolean = false;
 
+    name: string;
     private _sketch: string;
     private _isPaused: boolean = false;
 
