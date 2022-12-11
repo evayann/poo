@@ -1,9 +1,9 @@
 <div (click)="reload()">
-  <app-poo
-    [sketch]="sketch"
-    [pause]="isPaused[i]"
-    *ngFor="let sketch of pooSketches; let i = index"
-    (mouseover)="isPaused[i] = false"
-    (mouseout)="isPaused[i] = true"
-  ></app-poo>
+    <app-poo
+        [sketch]="sketch"
+        [pause]="isPaused[i]"
+        *ngFor="let sketch of pooSketches.all; let i = index"
+        (mouseover)="isPaused[i] = false"
+        (mouseout)="isPaused[i] = true"
+    ></app-poo>
 </div>

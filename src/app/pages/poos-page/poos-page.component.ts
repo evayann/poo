@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { getStyle } from '../../core/utilities';
-import { sketches } from '../../sketches/common';
+import { polylineParameters, polylineSketch, Sketches } from '@sketches';
+import { DoodleSketch } from '@sketches';
+import { Sketch } from '@sketches';
 
 @Component({
-  selector: 'app-poos-page',
-  templateUrl: './poos-page.component.html',
-  styleUrls: ['./poos-page.component.scss'],
+    selector: 'app-poos-page',
+    templateUrl: './poos-page.component.html',
+    styleUrls: ['./poos-page.component.scss'],
 })
 export class PoosPageComponent implements OnInit {
-  pooSketches: string[];
-  isPaused: boolean[];
+    pooSketches: Sketches;
+    isPaused: boolean[];
 
-  ngOnInit() {
-    this.reload();
-  }
+    ngOnInit() {
+        this.reload();
+    }
 
-  reload() {
-    this.pooSketches = sketches.map((sketchGenerator) =>
-      sketchGenerator(getStyle())
-    );
-    this.isPaused = sketches.map(() => true);
-  }
+    reload() {
+        this.pooSketches = new Sketches([new DoodleSketch('polyline', polylineSketch, polylineParameters)]);
+        this.isPaused = this.pooSketches.all.map(() => true);
+    }
 }

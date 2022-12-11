@@ -1,7 +1,7 @@
 import { gen, range, remove } from '../shared/array';
 import { random, randomIn } from '../shared/random';
-import { Pattern, patterns } from './patterns';
-import { mathShapes, shapes } from './shapes';
+import { patterns } from './doodle/patterns.list';
+import { mathShapes, shapes } from './doodle/shapes.list';
 
 const shape = (shapeColor: string, bgColor: string) => `
 :doodle {
@@ -23,7 +23,7 @@ const shape = (shapeColor: string, bgColor: string) => `
 const rdmColor = (...colors: string[]) => `@p(${colors.join(', ')})`;
 
 export const sketches = [
-  ({ primary, bgColor, shapeColor, stroke, angle, length }) => `    
+    ({ primary, bgColor, shapeColor, stroke, angle, length }) => `    
     @grid: 1 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -54,7 +54,7 @@ export const sketches = [
       }
     );
   `,
-  ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
+    ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
     @grid: 7 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -71,7 +71,7 @@ export const sketches = [
       to { transform: scale(${1 + stroke}) rotate(90deg); }  
     }
   `,
-  ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
+    ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
     @grid: 18 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -88,7 +88,7 @@ export const sketches = [
       '100% 0, 100% 100%, 0 100%'
     ));
   `,
-  ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
+    ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
     @grid: 10 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -114,7 +114,7 @@ export const sketches = [
       100% { transform: translate(0, 0); }
     }
   `,
-  ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
+    ({ primary, bgColor, shapeColor, stroke, angle, length }) => `
     @grid: 16 / 100%; 
 
     ${shape(shapeColor, bgColor)}
@@ -136,7 +136,7 @@ export const sketches = [
       }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     :doodle {
       @grid: 8 / 100%;
     }
@@ -169,7 +169,7 @@ export const sketches = [
       }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 5 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -184,7 +184,7 @@ export const sketches = [
 
     ${randomIn(...patterns)(primary, randomIn(secondary, tertiary))}
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 6x1 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -203,7 +203,7 @@ export const sketches = [
       50% { filter: hue-rotate(calc(270deg / @I * @i)); }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 16x1 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -237,7 +237,7 @@ export const sketches = [
       to { rotate: 360deg; }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 5 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -277,7 +277,7 @@ export const sketches = [
       }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     :doodle {
       @grid: 1 / 100%;
     }
@@ -324,7 +324,7 @@ export const sketches = [
       }
     );
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     :doodle {
       @grid: 5x1 / 100%;
     }
@@ -338,9 +338,9 @@ export const sketches = [
     @size: 0;
     padding-left: @r(15)%;
     box-shadow: 0 0 @r(10)vmin @r(1, 5)vmin ${rdmColor(
-      primary,
-      secondary,
-      tertiary
+        primary,
+        secondary,
+        tertiary
     )};
 
     filter: @svg-filter(
@@ -368,11 +368,11 @@ export const sketches = [
       }    
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => {
-    const colors = [primary, secondary, tertiary, shapeColor];
-    const c1 = randomIn(colors);
-    const c2 = randomIn(remove(c1, colors));
-    return `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => {
+        const colors = [primary, secondary, tertiary, shapeColor];
+        const c1 = randomIn(colors);
+        const c2 = randomIn(remove(c1, colors));
+        return `
     @grid: 50x1 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -385,9 +385,9 @@ export const sketches = [
       @size: @r(10%);
       border: 1px solid white;
       background: @p(none, ${rdmColor(
-        primary,
-        secondary,
-        tertiary
+          primary,
+          secondary,
+          tertiary
       )}, linear-gradient(to @p(bottom, left), @stripe(${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1}, ${c2} 1px, ${c1})));
       border-radius: @p(0, 50%);
       position: absolute;
@@ -420,8 +420,8 @@ export const sketches = [
       }
     }
   `;
-  },
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    },
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 30x1 / 100%;
     --deg: @p(-180deg, 180deg);
 
@@ -445,9 +445,9 @@ export const sketches = [
     box-shadow: @m2(0 0 50px ${rdmColor(primary, secondary, tertiary)});
     background: @m100(
       radial-gradient(${rdmColor(
-        primary,
-        secondary,
-        tertiary
+          primary,
+          secondary,
+          tertiary
       )} 50%, transparent 0) 
       @r(-20%, 120%) @r(-20%, 100%) / 1px 1px
       no-repeat
@@ -471,7 +471,7 @@ export const sketches = [
       }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
   @grid: 19 / 100%;
 
   ${shape(shapeColor, bgColor)}
@@ -518,7 +518,7 @@ export const sketches = [
     }
   }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 10 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -545,7 +545,7 @@ export const sketches = [
       }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 10x1 / 100%;
 
     ${shape(shapeColor, bgColor)}
@@ -578,7 +578,7 @@ export const sketches = [
       100% { transform: rotate(calc(@i * 30deg)); }
     }
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     @grid: 1 / 100%; 
 
     ${shape(shapeColor, bgColor)}
@@ -607,30 +607,40 @@ export const sketches = [
       }
     );
   `,
-  ({ primary, secondary, tertiary, bgColor, shapeColor }) => {
-    const defineMetaballs = (nb: number) => {
-      const radiusSum = range(nb).map(i => `ball${i}.r`).join('+');
-      const colorSum = range(nb).map(i => `ball${i}.rgb`).join('+');
-      return `
-        MetaBall ${gen(nb, i => `mb${i}`)};
+    ({ primary, secondary, tertiary, bgColor, shapeColor }) => {
+        const defineMetaballs = (nb: number) => {
+            const radiusSum = range(nb)
+                .map((i) => `ball${i}.r`)
+                .join('+');
+            const colorSum = range(nb)
+                .map((i) => `ball${i}.rgb`)
+                .join('+');
+            return `
+        MetaBall ${gen(nb, (i) => `mb${i}`)};
 
-        ${gen(nb, i => `
+        ${gen(
+            nb,
+            (i) => `
           vec2 mbs${i} = vec2(${random(10)}, ${random(10)});
-          mb${i}.pos = 0.7 * sin(iTime * ${random(0.3, 3)} + mbs${i} + ${random(1, 6)}); 
+          mb${i}.pos = 0.7 * sin(iTime * ${random(0.3, 3)} + mbs${i} + ${random(
+                1,
+                6
+            )}); 
           mb${i}.r = ${random(0.5, 2)}; 
           mb${i}.col = vec3(${random()}, ${random()}, ${random()});
           vec4 ball${i} = BallSDF(mb${i}, uv);
-        `).join('\n')}
+        `
+        ).join('\n')}
 
         float total = ${radiusSum};
         float threshold = total > 4.5 ? 1. : 0.;
         vec3 color = (${colorSum}) / total;
         color *= threshold;
         return color;
-      `
-    };
+      `;
+        };
 
-    return `
+        return `
       @grid: 1 / 100%; 
 
       ${shape(shapeColor, bgColor)}
@@ -659,8 +669,8 @@ export const sketches = [
           }
         }
       );
-    `
-  },
+    `;
+    },
 ];
 
 // void main() {
