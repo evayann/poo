@@ -1,29 +1,23 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@core/*": ["src/app/core/*"],
-      "@pages/*": ["src/app/pages/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@sketches": ["src/app/sketches/index.ts", "src/app/sketches/doodle/*"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strictNullChecks": true,
+        "importHelpers": true,
+        "target": "es2017",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2018", "dom"]
     },
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strictNullChecks": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"]
-  },
-  "angularCompilerOptions": {
-    "enableIvy": true,
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+    "angularCompilerOptions": {
+        "enableIvy": true,
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
+    }
 }
