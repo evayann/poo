@@ -9,3 +9,5 @@ export * from './picassa';
 export * from './kaleido-boom';
 export * from './math-shape';
 export * from './squishy-grid';
+export * from './cloud';
+export * from './floating-shape';
