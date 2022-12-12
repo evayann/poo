@@ -1,4 +1,4 @@
-import { IStyle, SketchConfiguration } from '@sketches';
+import { IStyle, SketchConfiguration } from '../../index';
 
 function contentGenerator(style: IStyle): string {
     const { primary } = style;

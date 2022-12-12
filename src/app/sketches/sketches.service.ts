@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Sketches, Sketch, DoodleSketch } from '@sketches';
+import { Sketches, Sketch, DoodleSketch } from './index';
 import * as sketches from './doodle/list/_index';
 
 @Injectable({

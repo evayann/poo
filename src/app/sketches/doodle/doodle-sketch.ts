@@ -1,5 +1,5 @@
-import { getStyle } from '@core/utilities';
-import { IStyle, Sketch } from '@sketches';
+import { getStyle } from '../../core/utilities';
+import { IStyle, Sketch } from '../index';
 
 export class DoodleSketch extends Sketch {
     parse(seed: number): string {

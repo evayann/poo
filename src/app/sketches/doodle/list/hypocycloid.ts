@@ -1,5 +1,5 @@
-import { random } from '@shared/random';
-import { IStyle, SketchConfiguration, SketchContentGenerator } from '@sketches';
+import { random } from '../../../shared/random';
+import { IStyle, SketchConfiguration } from '../../index';
 
 export type HypocycloidParameters = {
     stroke: number;

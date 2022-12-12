@@ -9,7 +9,7 @@ import {
     ViewChild,
 } from '@angular/core';
 import { CSSDoodleElement } from '../../interfaces/css-doodle.interface';
-import { Sketch } from '@sketches';
+import { Sketch } from '../../sketches/index';
 
 @Component({
     standalone: true,

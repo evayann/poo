@@ -1,6 +1,6 @@
-import { randomIn } from '@shared/random';
+import { randomIn } from '../../../shared/random';
 import { patterns } from '../patterns.list';
-import { IStyle, SketchConfiguration } from '@sketches';
+import { IStyle, SketchConfiguration } from '../../index';
 
 function contentGenerator(style: IStyle): string {
     const { primary, secondary, tertiary } = style;

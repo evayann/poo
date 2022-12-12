@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sketches } from '@sketches';
-import { DoodleSketch, SketchesService } from '@sketches';
+import { Sketches, SketchesService } from '../../sketches/index';
 
 @Component({
     selector: 'app-poos-page',
