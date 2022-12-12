@@ -1,4 +1,5 @@
-import { random } from '../../../shared/random';
+import { toRgb } from '../../../shared/color';
+import { random, randomIn } from '../../../shared/random';
 import { range, gen } from '../../../shared/array';
 import { IStyle, SketchConfiguration } from '../../index';
 
@@ -23,7 +24,7 @@ function contentGenerator(style: IStyle): string {
               vec2 mbs${i} = vec2(${random(10)}, ${random(10)});
               mb${i}.pos = 0.7 * sin(iTime * ${random(0.3, 3)} + mbs${i} + ${random(1, 6)}); 
               mb${i}.r = ${random(0.5, 2)}; 
-              mb${i}.col = vec3(${random()}, ${random()}, ${random()});
+              mb${i}.col = vec3(${toRgb(randomIn(primary, secondary, tertiary), true)});
               vec4 ball${i} = BallSDF(mb${i}, uv);
             `
             ).join('\n')}
