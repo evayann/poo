@@ -8,18 +8,18 @@ import {
     Input,
     ViewChild,
 } from '@angular/core';
-import { CSSDoodleElement } from '../../interfaces/css-doodle.interface';
-import { Sketch } from '../../sketches/index';
+import { CSSDoodleElement } from '../../../interfaces/css-doodle.interface';
+import { Sketch } from '../../../sketches/index';
 
 @Component({
     standalone: true,
-    selector: 'app-poo',
-    templateUrl: './poo.component.html',
-    styleUrls: ['./poo.component.scss'],
+    selector: 'app-poo-doodle',
+    templateUrl: './doodle.component.html',
+    styleUrls: ['./doodle.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PooComponent implements AfterViewInit {
+export class DoodleComponent implements AfterViewInit {
     @ViewChild('doodle') doodle!: ElementRef<CSSDoodleElement>;
     @Input()
     set sketch(sketch: Sketch) {

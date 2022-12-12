@@ -1,9 +1,14 @@
+<h2>Doodle</h2>
 <div (click)="reload()">
-    <app-poo
+    <app-poo-doodle
         [sketch]="sketch"
         [pause]="isPaused[i]"
         *ngFor="let sketch of pooSketches.all; let i = index"
         (mouseover)="isPaused[i] = false"
         (mouseout)="isPaused[i] = true"
-    ></app-poo>
+    ></app-poo-doodle>
+</div>
+<h2>P5js</h2>
+<div>
+    <app-poo-p5 [init]="p5test.contentGenerator()"></app-poo-p5>
 </div>

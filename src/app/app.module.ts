@@ -5,13 +5,14 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { AppComponent } from './app.component';
-import { PooComponent } from './core/poo/poo.component';
+import { DoodleComponent } from './core/poo/doodle/doodle.component';
 import { PooPageComponent } from './pages/poo-page/poo-page.component';
 import { PoosPageComponent } from './pages/poos-page/poos-page.component';
+import { P5Component } from './core/poo/p5/p5.component';
 
 @NgModule({
-    imports: [BrowserModule, FontAwesomeModule, PooComponent],
-    declarations: [AppComponent, PoosPageComponent, PooPageComponent],
+    imports: [BrowserModule, FontAwesomeModule, DoodleComponent],
+    declarations: [AppComponent, PoosPageComponent, PooPageComponent, P5Component],
     bootstrap: [AppComponent],
 })
 export class AppModule {

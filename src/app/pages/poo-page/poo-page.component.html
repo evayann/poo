@@ -2,7 +2,7 @@
     <fa-icon id="prev" aria-label="previous doodle effect" (click)="updateSketch()" [icon]="'arrow-left'"></fa-icon>
     <div class="poo">
         <div class="poo-container">
-            <app-poo [sketch]="currentSketch" [pause]="isPaused"></app-poo>
+            <app-poo-doodle [sketch]="currentSketch" [pause]="isPaused"></app-poo-doodle>
         </div>
         <div class="poo-pillow"></div>
         <button (click)="isPaused = !isPaused">{{ isPaused ? 'Play' : 'Stop' }} animation</button>
