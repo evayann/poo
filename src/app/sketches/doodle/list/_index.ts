@@ -17,3 +17,4 @@ export * from './sugar-rain';
 export * from './hypo-clock';
 export * from './stripe-distortion';
 export * from './metaballs';
+export * from './rainbow-tunnel';
