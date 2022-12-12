@@ -8,8 +8,12 @@ import * as sketches from './doodle/list/_index';
 export class SketchesService {
     public sketches: Sketches;
 
+    get newSketches(): Sketches {
+        return new Sketches(this.loadDoodleSketches());
+    }
+
     constructor() {
-        this.sketches = new Sketches(this.loadDoodleSketches());
+        this.sketches = this.newSketches;
     }
 
     private loadDoodleSketches(): Sketch[] {

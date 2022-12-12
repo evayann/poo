@@ -17,7 +17,7 @@ export class PoosPageComponent implements OnInit {
     }
 
     reload() {
-        this.pooSketches = this.ss.sketches;
+        this.pooSketches = this.ss.newSketches;
         this.isPaused = this.pooSketches.all.map(() => true);
     }
 }

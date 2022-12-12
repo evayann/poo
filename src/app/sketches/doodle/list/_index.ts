@@ -7,3 +7,4 @@ export * from './crazy-shapes';
 export * from './animate-stripe';
 export * from './picassa';
 export * from './kaleido-boom';
+export * from './math-shape';

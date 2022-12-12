@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { randomIn } from '../../shared/random';
-import { getStyle } from '../../core/utilities';
-import { sketches } from '../../sketches/common';
+import { Sketch, SketchesService } from '../../sketches/index';
 
 @Component({
-  selector: 'app-poo-page',
-  templateUrl: './poo-page.component.html',
-  styleUrls: ['./poo-page.component.scss'],
+    selector: 'app-poo-page',
+    templateUrl: './poo-page.component.html',
+    styleUrls: ['./poo-page.component.scss'],
 })
 export class PooPageComponent implements OnInit {
-  currentSketch: string;
-  isPaused: boolean = false;
+    currentSketch: Sketch;
+    isPaused: boolean = false;
 
-  ngOnInit() {
-    this.updateSketch();
-  }
+    constructor(private ss: SketchesService) {}
 
-  updateSketch() {
-    const style = getStyle();
-    const sketchGenerator = randomIn(...sketches);
-    this.currentSketch = sketchGenerator(style);
-  }
+    ngOnInit() {
+        this.updateSketch();
+    }
+
+    updateSketch() {
+        this.currentSketch = this.ss.sketches.randomOne;
+    }
 }
