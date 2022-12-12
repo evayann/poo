@@ -2,17 +2,17 @@ import { randomIn } from '../shared/random';
 import { Sketch } from './sketch';
 
 export class Sketches {
-    constructor(private list: Sketch[]) {}
+    get all(): Sketch[] {
+        return this.list;
+    }
 
     get randomOne(): Sketch {
         return randomIn(...this.list);
     }
 
-    get(name: string): Sketch | null {
-        return null;
-    }
+    constructor(private list: Sketch[]) {}
 
-    get all(): Sketch[] {
-        return this.list;
+    get(name: string): Sketch | undefined {
+        return this.list.find((sketch: Sketch) => sketch.name === name);
     }
 }

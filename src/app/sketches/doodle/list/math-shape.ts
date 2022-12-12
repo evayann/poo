@@ -9,7 +9,7 @@ function contentGenerator(style: IStyle): string {
         @grid: 5 / 100%;
 
         border-radius: @r(35%);
-        @random(.3) {
+        @random {
             @shape: @p(${mathShapes});
         }
         background-color: ${randomIn(primary, secondary, tertiary)};
@@ -25,7 +25,7 @@ function contentGenerator(style: IStyle): string {
               }
               feDisplacementMap {
                 in: SourceGraphic;
-                scale: @r(40, 60);
+                scale: @r(10, 20);
               }
             );
           }

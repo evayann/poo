@@ -24,46 +24,6 @@ const rdmColor = (...colors: string[]) => `@p(${colors.join(', ')})`;
 
 export const sketches = [
     ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
-    @grid: 5 / 100%;
-
-    ${shape(shapeColor, bgColor)}
-
-    border-radius: @r(35%);
-    @random(.2) {
-      @shape: @p(${mathShapes});
-    }
-    background-color: ${rdmColor(primary, secondary, tertiary)};
-
-    animation: filter @r(4, 10)s infinite;
-
-    @keyframes filter {
-      0%, 100% {
-        filter: @svg-filter(
-          feTurbulence {
-            type: fractalNoise;
-            baseFrequency: @r(.01, 0.02) .5;
-          }
-          feDisplacementMap {
-            in: SourceGraphic;
-            scale: @r(40, 60);
-          }
-        );
-      }
-      50% {
-        filter: @svg-filter(
-          feTurbulence {
-            type: fractalNoise;
-            baseFrequency: @r(.1, .2) @r(1, 2);
-          }
-          feDisplacementMap {
-            in: SourceGraphic;
-            scale: @r(80, 100);
-          }
-        );
-      }
-    }
-  `,
-    ({ primary, secondary, tertiary, bgColor, shapeColor }) => `
     :doodle {
       @grid: 1 / 100%;
     }
