@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import * as p5 from 'p5';
+import p5 from 'p5';
 
 @Component({
     selector: 'app-poo-p5',
@@ -14,11 +14,6 @@ export class P5Component {
     private sketch!: p5;
 
     ngAfterViewInit() {
-        console.log(this.init, this.canvas.nativeElement);
-
-        this.sketch = this.init(this.canvas.nativeElement);
-        console.log(this.sketch);
-        this.sketch.remove();
         this.sketch = this.init(this.canvas.nativeElement);
     }
 

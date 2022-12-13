@@ -1,31 +1,39 @@
 import { IStyle, SketchConfiguration } from '../../index';
-import * as p5 from 'p5';
+import p5 from 'p5';
 
 function contentGenerator(style: IStyle): unknown {
-    let xoff = 0;
-
-    const setBackground = (s: p5) => s.background(51);
-    const setFill = (s: p5) => s.fill(2, 165, 255);
-
-    console.log('totox');
-
     return (nativeElement: HTMLElement): p5 => {
         return new p5((s: p5) => {
+            let speed = 1;
+            let nbSegment = 16;
+            let strokeSize = 3;
+            let strokeColor;
+            let time = 0;
+
             s.setup = () => {
                 console.log('toto');
 
-                s.createCanvas(400, 400);
+                s.createCanvas(100, 100);
+                strokeColor = p5.color('#bb5151');
+                p5.noFill();
             };
 
             s.draw = () => {
-                setBackground(s);
-                setFill(s);
-
-                let x = s.map(s.noise(xoff), 0, 1, 0, s.width);
-
-                xoff += 0.01;
-
-                s.ellipse(x, 200, 24, 24);
+                s.clear();
+                s.background('black');
+                s.translate(50, 50);
+                s.stroke(strokeColor);
+                s.strokeWeight(strokeSize);
+                const size = Math.min(50, 50) - 20;
+                s.circle(0, 0, 2 * size);
+                let [px, py]: [number, number] = [0, 0];
+                for (let i = 0; i <= size; i += size / nbSegment) {
+                    const factor: number = (2 + speed) * time * (1 + s.dist(0, 0, px, py) / size);
+                    const [x, y] = [s.cos(factor) * i, s.sin(factor) * i];
+                    s.line(px, py, x, y);
+                    [px, py] = [x, y];
+                }
+                time += 0.1;
             };
         }, nativeElement);
     };
