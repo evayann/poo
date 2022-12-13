@@ -11,11 +11,11 @@ function contentGenerator(style: IStyle): unknown {
             let time = 0;
 
             s.setup = () => {
-                console.log('toto');
+                console.log(p5);
 
                 s.createCanvas(100, 100);
-                strokeColor = p5.color('#bb5151');
-                p5.noFill();
+                strokeColor = s.color('#bb5151');
+                s.noFill();
             };
 
             s.draw = () => {
