@@ -2,7 +2,7 @@ import { IStyle, SketchConfiguration } from '../../index';
 import p5 from 'p5';
 
 function contentGenerator(style: IStyle): unknown {
-    return (nativeElement: HTMLElement): p5 => {
+    return (nativeElement: HTMLElement, superSetup: (canvas: p5.Renderer) => void): p5 => {
         return new p5((s: p5) => {
             let speed = 1;
             let nbSegment = 16;
@@ -11,9 +11,8 @@ function contentGenerator(style: IStyle): unknown {
             let time = 0;
 
             s.setup = () => {
-                console.log(p5);
-
-                s.createCanvas(100, 100);
+                const canvas = s.createCanvas(100, 100);
+                superSetup(canvas);
                 strokeColor = s.color('#bb5151');
                 s.noFill();
             };
