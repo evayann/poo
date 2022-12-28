@@ -18,3 +18,4 @@ export * from './hypo-clock';
 export * from './stripe-distortion';
 export * from './metaballs';
 export * from './rainbow-tunnel';
+export * from './star-tunnel';

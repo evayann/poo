@@ -1,5 +1,5 @@
 <div id="screen">
-    <fa-icon id="prev" aria-label="previous doodle effect" (click)="updateSketch()" [icon]="'arrow-left'"></fa-icon>
+    <button id="prev" aria-label="previous doodle effect" (click)="updateSketch()">Previous</button>
     <div class="poo">
         <div class="poo-container">
             <app-poo-doodle [sketch]="currentSketch" [pause]="isPaused"></app-poo-doodle>
@@ -7,5 +7,5 @@
         <div class="poo-pillow"></div>
         <button (click)="isPaused = !isPaused">{{ isPaused ? 'Play' : 'Stop' }} animation</button>
     </div>
-    <fa-icon id="next" aria-label="next doodle effect" (click)="updateSketch()" [icon]="'arrow-right'"></fa-icon>
+    <button id="next" aria-label="next doodle effect" (click)="updateSketch()">Next</button>
 </div>

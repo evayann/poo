@@ -10,6 +10,10 @@ export class Sketches {
         return randomIn(...this.list);
     }
 
+    get last(): Sketch {
+        return this.list[this.list.length - 4];
+    }
+
     constructor(private list: Sketch[]) {}
 
     get(name: string): Sketch | undefined {

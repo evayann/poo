@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from
 import p5 from 'p5';
 
 @Component({
+    standalone: true,
     selector: 'app-poo-p5',
     templateUrl: './p5.component.html',
     styleUrls: ['./p5.component.scss'],

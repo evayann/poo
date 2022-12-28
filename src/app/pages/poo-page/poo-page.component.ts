@@ -17,6 +17,6 @@ export class PooPageComponent implements OnInit {
     }
 
     updateSketch() {
-        this.currentSketch = this.ss.sketches.randomOne;
+        this.currentSketch = this.ss.sketches.last;
     }
 }
